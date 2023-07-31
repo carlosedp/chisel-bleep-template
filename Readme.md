@@ -39,9 +39,18 @@ cs install --channel https://raw.githubusercontent.com/oyvindberg/bleep/master/c
 
 Then install Chisel Firtool that compiles the generated code to SystemVerilog from <https://github.com/llvm/circt/releases/latest>, downloading the binary for your platform and adding it to the $PATH.
 
-## Generating Verilog
+```sh
+# For MacOS:
+curl -sL https://github.com/llvm/circt/releases/download/firtool-1.48.0/firrtl-bin-macos-x64.tar.gz | tar xvz
+# For Linux
+curl -sL https://github.com/llvm/circt/releases/download/firtool-1.48.0/firrtl-bin-linux-x64.tar.gz | tar xvz
+# Export path
+export PATH=./firtool-1.48.0/bin:$PATH
+```
 
-Verilog code can be generated from Chisel by using the build tool
+## Generating SystemVerilog
+
+SystemVerilog code can be generated from Chisel by using the build tool.
 
 ```sh
 bleep run toplevel
