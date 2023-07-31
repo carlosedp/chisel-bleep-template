@@ -1,0 +1,13 @@
+.metals
+.bleep
+.bloop
+.bsp
+.scala-build
+.vscode
+/target
+test_run_dir
+/*.anno.json
+/*.fir
+/*.v
+generated
+/firtool-*

@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/oyvindberg/bleep/master/schema.json
+$schema: https://raw.githubusercontent.com/oyvindberg/bleep/master/schema.json
+$version: 0.0.2
+jvm:
+  name: temurin:1.17
+projects:
+  toplevel:
+    dependencies:
+      - org.chipsalliance::chisel:5.0.0
+    extends: template-common
+    platform:
+      mainClass: Toplevel
+  toplevel-test:
+    dependencies:
+      - org.scalatest::scalatest:3.2.16
+      - edu.berkeley.cs::chiseltest:5.0.0
+    dependsOn: toplevel
+    extends: template-common
+    isTestProject: true
+templates:
+  template-common:
+    platform:
+      name: jvm
+    scala:
+      compilerPlugins: org.chipsalliance:::chisel-plugin:5.0.0
+      options: -Ywarn-unused -deprecation -feature -unchecked -language:reflectiveCalls -Xcheckinit -Ywarn-dead-code
+      version: 2.13.10
