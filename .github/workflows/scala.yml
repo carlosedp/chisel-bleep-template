@@ -1,0 +1,32 @@
+name: Scala CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["*"]
+  pull_request:
+    branches: ["*"]
+
+concurrency:
+  group: ${{ github.ref }}-CI
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Verilator
+        run: sudo apt-get install -y verilator
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Bleep
+        uses: bleep-build/bleep-setup-action@0.0.1
+
+      - name: Cache packages
+        uses: coursier/cache-action@v6
+        id: coursier-cache
+
+      - name: Run Bleep Tests
+        run: bleep --no-color test
